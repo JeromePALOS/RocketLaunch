@@ -2,7 +2,7 @@
 
 Système d'allumage à distance de micro-fusée 
 
-![Présentation](https://github.com/JeromePALOS/RocketLaunch/asset/img/RocketLaunch.PNG "Présentation")
+![Présentation](https://github.com/JeromePALOS/RocketLaunch/blob/main/asset/img/LaunchRocket.PNG?raw=true "Présentation")
 
 
 ## Instalation
@@ -16,8 +16,8 @@ node index.js
 
 
 ## Defaut information
-link : localhost:8200
-Launch code : 1607
-Ouput Gpio : 4
+- link : localhost:8200
+- Launch code : 1607
+- Ouput Gpio : 4
 
 
