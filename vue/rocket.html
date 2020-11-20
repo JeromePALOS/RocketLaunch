@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <title>Rocket Launch</title>
+
+        <link rel="stylesheet" type="text/css" href="/asset/css/style.css">
+
+    </head>
+    <body>
+        <nav>
+            <section class="block b-75">
+                <div>
+                    <h1>Launch Rocket</h1>
+                </div>
+            </section>
+            <section class="block b-25">
+                <div id="heure_exacte"></div>
+            
+            </section>
+        </nav>
+        
+        <section class="block b-100">
+            <div>
+                <button class="btn-perso" id="modalBtn-launchAction">LAUCH ROCKET</button>
+
+                <div id="modal-launchAction" class="modal">
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                        <form id="launch-form" action="/rocket/launch/" method="post">
+                            <label for="launchCode">Code pour lancement</label>
+                            <input type="tel" id="launchCode" name="launchCode" pattern="[0-9]{4}" required>
+                            <input type="submit" value="LAUNCH !!!!!!!!!!!!!!!!">
+                        </form>
+                  </div>
+
+                </div>
+            </div>
+        </section>
+
+        
+        
+        
+        
+        <section class="block b-100">
+            <div>
+                <h2>Note</h2> 
+                <form id="note-form" action="/rocket/note/save/" method="post">
+                    <textarea rows="10" id="note-textarea" name="noteTextarea"></textarea>
+                    <input type="submit" value="Enregistrer" />
+                </form>
+            </div>
+        </section>
+        
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script type="text/javascript" src="/asset/js/heure.js"></script>
+<script type="text/javascript" src="/asset/js/note.js"></script>
+<script>
+
+
+        
+
+    
+document.getElementById('launch-form').addEventListener('submit', function(){
+	if(document.getElementById('launchCode').value == '1607'){
+
+			alert('LAUNCH');
+
+
+	}else{
+     		alert('Wrong password');	
+	}     
+}, false);
+    
+    
+createModal('launchAction');    
+    
+function createModal(name){
+    var modal = document.getElementById("modal-" + name);
+    var btn = document.getElementById("modalBtn-" + name);
+    var span = modal.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
+    
+
+ var socket = io();
+
+socket.on('launch', function(msg){
+ 	var div = document.createElement('div');
+	div.classList.add('Launch');
+	div.innerHTML = msg;
+
+
+	document.body.append(div);
+
+});
+    
+</script>
+        
+        
+        
+    </body>
+</html>

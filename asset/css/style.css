@@ -1,0 +1,167 @@
+*{
+    box-sizing: border-box;
+    
+}
+body{
+    background-color: darkslateblue;
+}
+
+.block{
+    margin: 10px 0px 10px 0px;
+    float:left;
+}
+.block > div{
+    margin: 0px 10px 0px 10px;
+    background-color: white;
+    box-shadow: 0px 5px 8px black;
+    padding: 10px 10px 10px 10px;
+}
+
+
+.b-25{
+    width: 25%;
+}
+
+.b-55{
+    width: 50%;
+}
+
+.b-75{
+    width: 75%;
+}
+
+.b-100{
+    width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+    .b-25, .b-55, .b-75, .b-100{
+        width:100%;
+    }
+}
+
+
+
+
+h1{
+    color: black;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 32px;
+}
+h2{
+    font-family: sans-serif;
+    margin: 0 0 5px 0;
+    border-bottom: 1px solid black;
+}
+#heure_exacte{
+    font-size: 32px;
+}
+
+textarea, input{
+    width: 100%;
+    border: 1px solid black;
+}
+input{
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+
+
+
+.btn-perso{
+	background-color: white;
+	color: black;
+	border-radius: 50px;
+	box-shadow: 1px 1px black;
+	border: 1px black solid;
+	padding: 5px 50px 5px 50px;
+	cursor: pointer;
+
+}
+
+#modalBtn-launchAction{
+	width: 100%;
+}
+
+
+
+.Launch{
+	z-index: 9;
+	background-color: darkred;
+	color: white;
+	width: 100%;
+	text-align:center;
+    font-size: 48px;
+    height: 100%;
+    position: fixed;
+    opacity: 0.8;
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
