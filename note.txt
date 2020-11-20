@@ -1,1 +1,4 @@
-.......ggg
+Gpio : 4
+14h - Vérifier allumeur et allumer boitier relai
+14h10 - Vérifier fusée et support de lancement
+14h30 - Lancement de la fusée
