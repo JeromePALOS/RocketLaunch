@@ -2,7 +2,7 @@
 
 Système d'allumage à distance de micro-fusée 
 
-![Présentation](https://github.com/JeromePALOS/RocketLaunch/blob/main/asset/img/LaunchRocket.PNG?raw=true "Présentation")
+![Présentation](https://github.com/JeromePALOS/RocketLaunch/blob/main/asset/img/RocketLaunch.PNG?raw=true "Présentation")
 
 
 ## Instalation
