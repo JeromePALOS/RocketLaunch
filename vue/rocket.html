@@ -31,10 +31,14 @@
                 <div id="modal-launchAction" class="modal">
                   <div class="modal-content">
                     <span class="close">&times;</span>
-                        <form id="launch-form" action="/rocket/launch/" method="post">
+                        <form id="launch-form" action="" method="post">
                             <label for="launchCode">Code pour lancement</label>
-                            <input type="tel" id="launchCode" name="launchCode" pattern="[0-9]{4}" required>
-                            <input type="submit" value="LAUNCH !!!!!!!!!!!!!!!!">
+                            <input type="tel" id="launchCode" name="launchCode" value="0000">
+
+                            <div class="button-frame plastic">
+                                <input class="the-button plastic" id="button-send" type="submit" value="Stop">
+                            </div>
+                            
                         </form>
                   </div>
 
@@ -56,25 +60,38 @@
             </div>
         </section>
         
+        
+        <a style="color: white;text-align:center; "href="http://10.0.0.1/RaspAP/index.php">RaspAP - Gestion Hostpot wifi</a>
+        
+        
+        
+        
 <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 <script type="text/javascript" src="/asset/js/heure.js"></script>
 <script type="text/javascript" src="/asset/js/note.js"></script>
 <script>
 
-
+document.getElementById('launchCode').addEventListener('input', function(){
+    if(document.getElementById('launchCode').value == '1607'){
+        document.getElementById('button-send').value = 'LAUNCH';
+    }else{
+        document.getElementById('button-send').value = 'stop';
+    }
+}, false);
         
 
     
-document.getElementById('launch-form').addEventListener('submit', function(){
-	if(document.getElementById('launchCode').value == '1607'){
+document.getElementById('launch-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    socket.emit('launch', document.getElementById('launchCode').value);
+    
+    document.getElementById('button-send').value = 'stop';
+    document.getElementById('launchCode').value = '0000';
+        
+});
+        
+        
 
-			alert('LAUNCH');
-
-
-	}else{
-     		alert('Wrong password');	
-	}     
-}, false);
     
     
 createModal('launchAction');    
@@ -106,8 +123,13 @@ socket.on('launch', function(msg){
 	div.classList.add('Launch');
 	div.innerHTML = msg;
 
-
 	document.body.append(div);
+    
+    setTimeout(function(){div.remove()}, 5000);
+    
+    
+    
+    
 
 });
     

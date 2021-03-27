@@ -1,11 +1,22 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 8200;
+const PORT = process.env.PORT || 8200;
 
-var Gpio = require('onoff').Gpio;
-var LED = new Gpio(4, 'out');
+var server = app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}.`);
+});
+
+
+
+const io = require('socket.io')(server);
+
+
+
+
+var rpio = require('rpio');
+
+
 
 app.use(express.static(__dirname));
 app.use(express.urlencoded({
@@ -29,7 +40,7 @@ app.post('/rocket/note/save/', function(req, res){
 	  console.log('/rocket/note/save/ : ' + req.body.noteTextarea +' > modif note.txt');
 	});
 
-  res.sendFile(__dirname + '/vue/rocket.html');
+  res.redirect('/');
 });
 
 io.on('connection', function(socket){
@@ -39,24 +50,27 @@ io.on('connection', function(socket){
 	socket.on('note', function(msg){
     		io.emit('note', msg);
   	});
-});
-
-app.post('/rocket/launch/', function(req, res){
-	if(req.body.launchCode == "1607"){
-		if (LED.readSync() === 0) { 
-			io.emit('launch', 'Lancement !!!');
-    			LED.writeSync(1); 
+	
+	socket.on('launch', function(code){
+    		console.log(code);
+		if(code == "1607"){
+			rpio.init({mapping: 'gpio'});
+			rpio.open(4, 1);
+			io.emit('launch', 'Launch');
+			//rpio.sleep(10);
+			//rpio.open(4, 0);
 			
-			console.log('/rocket/launch/ : feu');
-  		} 
-		LED.unexport();
-	}
-	res.sendFile(__dirname + '/vue/rocket.html');
+			
+			setTimeout(function(){rpio.open(4, 0)}, 5000);
+		}else{
+			rpio.init({mapping: 'gpio'});
+			rpio.open(4, 0);	
+		}
+  	});
+	
 	
 });
 
 
 
-http.listen(port, function(){
-  console.log('listening on *:' + port);
-});
+

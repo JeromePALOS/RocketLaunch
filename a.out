@@ -1,0 +1,36 @@
+
+
+#include <stdio.h>
+#include <wiringPi.h>
+
+
+int main()
+{
+        int cmd;
+        wiringPiSetup();  //Initialize the hardware
+        pinMode(4,OUTPUT);  //The initialization pin is the output port
+        digitalWrite(4,HIGH); //Set the pin to high level
+
+        printf("Please enter 1 or 1:\n");
+        while(1)
+        {
+                scanf("%d",&cmd);
+                if(cmd == 0)
+                {
+                        digitalWrite(4,HIGH); //Set the pin to high level
+                }else if(cmd == 1)
+                {
+                        digitalWrite(4,LOW); //Put the pin to low
+ 
+                }else
+                {
+                        printf("Input error, please re-enter\n");
+
+                }
+        }
+
+        return 0;
+
+}
+
+
